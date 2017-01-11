@@ -34,6 +34,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'underscore-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'paperclip'
+gem 'textacular'
+gem 'devise', '~> 4.2'
+gem 'omniauth-twitter'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

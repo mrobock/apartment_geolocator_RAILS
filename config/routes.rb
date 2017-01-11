@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :owners
   get 'apartments/all_map_locations'
   resources :apartments do
     get 'map_location'
+    get 'search', on: :collection
   end
 
 

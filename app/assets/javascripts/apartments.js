@@ -70,10 +70,19 @@ function loadAndCreateGmap() {
 
   if ($('#all_apartments_map').length > 0) {
     // Access the data-apartment-id attribute on the map element
+    if ($('#all_apartments_map').attr('data-search-string') != null) {
+      var searchString = $('#all_apartments_map').attr('data-search-string');
+      var dataToServer = {
+        "search" : {
+          "search_string": searchString
+        }
+      };
+    }
 
     $.ajax({
       dataType: 'json',
       url: '/apartments/all_map_locations',
+      data: dataToServer,
       method: 'GET',
       success: function(dataFromServer) {
         createall_locations_Gmap(dataFromServer);

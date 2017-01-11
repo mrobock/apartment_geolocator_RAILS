@@ -1,5 +1,6 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_owner!, except: [:show, :index, :all_map_locations, :map_location]
 
   # GET /apartments
   # GET /apartments.json
@@ -8,7 +9,11 @@ class ApartmentsController < ApplicationController
   end
 
   def all_map_locations
-    apartments = Apartment.all
+    if !params[:search].blank?
+      apartments = Apartment.search(params[:search][:search_string])
+    else
+      apartments = Apartment.all
+    end
     @hash = Gmaps4rails.build_markers(apartments) do |apartment, marker|
       marker.lat(apartment.latitude)
       marker.lng(apartment.longitude)
@@ -34,11 +39,15 @@ class ApartmentsController < ApplicationController
 
   # GET /apartments/new
   def new
-    @apartment = Apartment.new
+    @apartment = current_owner.apartments.build
   end
 
   # GET /apartments/1/edit
   def edit
+  end
+
+  def search
+    @apartments = Apartment.search(params[:search])
   end
 
   # POST /apartments
@@ -89,6 +98,6 @@ class ApartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartment_params
-      params.require(:apartment).permit(:street_1, :street_2, :city, :zip, :state, :country, :name, :phone_number, :availability)
+      params.require(:apartment).permit(:street_1, :street_2, :city, :zip, :state, :country, :name, :phone_number, :availability, :image)
     end
 end
