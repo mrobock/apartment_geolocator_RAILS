@@ -38,6 +38,8 @@ gem 'paperclip'
 gem 'textacular'
 gem 'devise', '~> 4.2'
 gem 'omniauth-twitter'
+gem 'cancancan'
+gem 'rolify'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
