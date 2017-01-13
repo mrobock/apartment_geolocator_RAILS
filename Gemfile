@@ -40,6 +40,7 @@ gem 'devise', '~> 4.2'
 gem 'omniauth-twitter'
 gem 'cancancan'
 gem 'rolify'
+gem 'aws-sdk', '~> 2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
