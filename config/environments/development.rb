@@ -7,6 +7,7 @@ Rails.application.configure do
     access_key_id: ENV.fetch('AKIAIUCJYAOYVSOW2IEA'),
     secret_access_key: ENV.fetch('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'),
     s3_region: ENV.fetch('us-west-1'),
+    s3_host_name: "s3-#{ENV['AWS_REGION']}.amazonaws.com"
     }
   }
   # In the development environment your application's code is reloaded on
