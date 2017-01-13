@@ -1,6 +1,7 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_owner!, except: [:show, :index, :all_map_locations, :map_location]
+  load_and_authorize_resource
 
   # GET /apartments
   # GET /apartments.json
@@ -53,7 +54,7 @@ class ApartmentsController < ApplicationController
   # POST /apartments
   # POST /apartments.json
   def create
-    @apartment = Apartment.new(apartment_params)
+    @apartment = current_owner.apartments.build(apartment_params)
 
     respond_to do |format|
       if @apartment.save

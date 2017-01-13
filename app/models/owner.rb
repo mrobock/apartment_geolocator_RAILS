@@ -1,5 +1,6 @@
 class Owner < ApplicationRecord
   rolify
+  after_create :assign_role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,4 +14,10 @@ class Owner < ApplicationRecord
       owner.password = Devise.friendly_token[0,20]
     end
   end
+
+  def assign_role
+    add_role(:poster)
+  end
+
+
 end

@@ -1,7 +1,23 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(owner)
+
+    if owner.nil?
+      owner = Owner.new
+      # owner.add_role("poster")
+    end
+
+      if owner.has_role? :admin
+        can :manage, :all
+      elsif owner.has_role? :moderator
+        can :manage, Apartment
+      else owner.has_role? :poster
+        can :manage, Apartment, owner_id: owner.id
+      end
+
+      # can :read, :all
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
