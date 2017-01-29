@@ -6,7 +6,7 @@
 <form action="/apartments/search" method="get" id="search_form">
   <label for="search">Search</label>
   <input type="text" name="search" id="search_box" />
-  <input type="submit" value="Search" class: "button">
+  <input type="submit" value="Search" class="button">
 </form>
 
 <!-- New Apartment button (only for logged in users(called owners)) -->
@@ -45,11 +45,11 @@
         <td><%= apartment.phone_number %></td>
         <td><%= apartment.availability %></td>
         <td><%= link_to image_tag(apartment.image.url(:small)), apartment.image.url %></td>
-        <td><%= link_to 'Show', apartment %></td>
+        <td><%= button_to 'Show', apartment_path(apartment), class: 'button', method: :get %></td>
         <!-- Only the owner of the apartment or a moderator or admin can edit/delete apartments -->
         <% if !current_owner.nil? && ((apartment.owner == current_owner && current_owner.has_role?("poster")) || current_owner.has_role?("moderator") || current_owner.has_role?("admin")) %>
-        <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
-        <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Edit', edit_apartment_path(apartment), class: 'button', method: :get %></td>
+        <td><%= button_to 'Destroy', apartment_path(apartment), class: 'button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

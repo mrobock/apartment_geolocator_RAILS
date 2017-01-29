@@ -10,7 +10,7 @@
 
   <%= link_to 'Sign Out', destroy_owner_session_path, method: 'delete' %>
 
-  <% current_owner.roles.each do |role| %> | 
+  <% current_owner.roles.each do |role| %> |
     <%= role.name %>
   <%end%>
 
