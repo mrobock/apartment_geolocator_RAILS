@@ -1,3 +1,4 @@
+<!-- Same table as index page but populated only by search results -->
 <table>
   <thead>
     <tr>
@@ -29,8 +30,10 @@
         <td><%= apartment.availability %></td>
         <td><%= link_to image_tag(apartment.image.url(:small)), apartment.image.url %></td>
         <td><%= link_to 'Show', apartment %></td>
+        <% if !current_owner.nil? && ((apartment.owner == current_owner && current_owner.has_role?("poster")) || current_owner.has_role?("moderator") || current_owner.has_role?("admin")) %>
         <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
         <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
