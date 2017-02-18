@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Apartment Mapper
 
-Things you may want to cover:
+### Made Using:
+* Ruby on Rails (5.0 & 2.3)
+* JavaScript
+* jQuery
+* PostgreSQL
+* HTML
+* CSS
+* Bootstrap
+* Rspec
+* Capybara
 
-* Ruby version
+### Gems:
+* Devise
+* Rollify
+* CanCan
+* Omniauth
+* Textacular
+* Geocode
+* Gmaps4Rails
 
-* System dependencies
+### To Install:
+1. Clone from Github
+2. Bundle
+3. Create database (rake db:create)
+4. Start Rails Server! (rails s)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### To Test:
+1. Rake!
